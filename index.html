@@ -116,6 +116,14 @@
       display: none;
     }
 
+    footer {
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: #999;
+      text-align: center;
+      padding: 1rem;
+    }
+
     @media (max-width: 360px) {
       .captcha-wrapper {
         transform: scale(0.95);
@@ -144,14 +152,16 @@
   </div>
 
   <div class="verificando" id="verificando">🔄 Verificando...</div>
-
   <div id="barra"></div>
-
   <div id="spinner">
     <img src="https://i.imgur.com/llF5iyg.gif" alt="Carregando..." width="24" />
   </div>
-
   <div id="progresso">Redirecionando em <span id="tempo">2</span>s...</div>
+
+  <footer>
+    Este procedimento garante a segurança do sistema e a integridade das informações acessadas.<br/>
+    Todos os direitos reservados © 2025.
+  </footer>
 
   <script>
     function verificarCaptcha() {
