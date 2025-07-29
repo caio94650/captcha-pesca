@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificação</title>
+  <style>
+    body {
+      background: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .captcha-box {
+      border: 1px solid #ccc;
+      padding: 1.5rem 2rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+    .captcha-box input {
+      margin-right: 1rem;
+      width: 20px;
+      height: 20px;
+    }
+    .loading {
+      display: none;
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="captcha-box" onclick="verifyCaptcha()">
+      <input type="checkbox" id="checkbox" />
+      <label for="checkbox">Não sou um robô</label>
+    </div>
+    <div class="loading" id="loading">Verificando...</div>
+  </div>
+
+  <script>
+    function verifyCaptcha() {
+      const checkbox = document.getElementById("checkbox");
+      const loading = document.getElementById("loading");
+
+      checkbox.checked = true;
+      loading.style.display = "block";
+
+      setTimeout(() => {
+        window.location.href = "index.html"; // Redireciona para sua pressel principal
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
