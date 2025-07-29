@@ -45,7 +45,6 @@
       padding: 0 12px;
       box-sizing: border-box;
       position: relative;
-      cursor: pointer;
     }
 
     .left {
@@ -102,9 +101,9 @@
     <img src="https://i.ibb.co/Gfqhfb9V/portal-da-pesca-300x25.png" alt="Portal da Pesca" />
   </header>
 
-  <div class="captcha-wrapper" onclick="verificarCaptcha()">
+  <div class="captcha-wrapper">
     <div class="left">
-      <input type="checkbox" id="check" />
+      <input type="checkbox" id="check" onchange="verificarCaptcha()" />
       <span>I'm not a robot</span>
     </div>
     <div class="right">
@@ -121,10 +120,8 @@
       const checkbox = document.getElementById("check");
       const msg = document.getElementById("verificando");
 
-      if (!checkbox.checked) {
-        checkbox.checked = true;
+      if (checkbox.checked) {
         msg.style.display = "block";
-
         setTimeout(() => {
           window.location.href = "https://clubesolidario.com/pressel-pesca/";
         }, 2000);
