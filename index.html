@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>reCAPTCHA Verification</title>
+  <title>Verificação</title>
   <style>
     body {
       margin: 0;
-      background: #f9f9f9;
+      background: #f2f2f2;
       font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
@@ -29,7 +29,7 @@
     .captcha-wrapper {
       background: #fff;
       border: 1px solid #d3d3d3;
-      border-radius: 3px;
+      border-radius: 4px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       margin-top: 40px;
       width: 302px;
@@ -39,6 +39,7 @@
       justify-content: space-between;
       padding: 0 12px;
       box-sizing: border-box;
+      position: relative;
       cursor: pointer;
     }
 
@@ -72,13 +73,16 @@
     .right img {
       height: 20px;
       margin-bottom: 2px;
+      opacity: 0.6;
     }
 
     .verificando {
-      margin-top: 1rem;
-      font-size: 0.88rem;
+      position: absolute;
+      bottom: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.85rem;
       color: #666;
-      text-align: center;
       display: none;
     }
   </style>
@@ -92,16 +96,15 @@
   <div class="captcha-wrapper" onclick="verificarCaptcha()">
     <div class="left">
       <input type="checkbox" id="check" />
-      <span>I'm not a robot</span>
+      <span>Não sou um robô</span>
     </div>
     <div class="right">
       <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA" />
       <div>reCAPTCHA</div>
-      <div><u>Privacy</u> - <u>Terms</u></div>
+      <div><u>Privacidade</u> • <u>Termos</u></div>
     </div>
+    <div class="verificando" id="verificando">🔄 Verificando...</div>
   </div>
-
-  <div class="verificando" id="verificando">🔄 Verifying...</div>
 
   <script>
     function verificarCaptcha() {
@@ -113,7 +116,7 @@
         msg.style.display = "block";
 
         setTimeout(() => {
-          window.location.href = "index.html"; // destino após verificação
+          window.location.href = "index.html"; // Redireciona após 2s
         }, 2000);
       }
     }
