@@ -23,12 +23,19 @@
     header {
       width: 100%;
       text-align: center;
-      padding: 2rem 1rem 1rem;
+      padding: 2rem 1rem 0.5rem;
     }
 
     header img {
       max-width: 260px;
       height: auto;
+    }
+
+    .subtext {
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: -8px;
+      text-align: center;
     }
 
     .captcha-wrapper {
@@ -81,10 +88,31 @@
     }
 
     .verificando {
-      margin-top: 1.2rem;
-      font-size: 0.85rem;
+      margin-top: 1rem;
+      font-size: 0.88rem;
       color: #555;
       text-align: center;
+      display: none;
+    }
+
+    #barra {
+      width: 0%;
+      height: 4px;
+      background: #1a73e8;
+      margin-top: 12px;
+      transition: width 2s linear;
+      border-radius: 2px;
+    }
+
+    #progresso {
+      font-size: 0.85rem;
+      color: #777;
+      margin-top: 6px;
+      display: none;
+    }
+
+    #spinner {
+      margin-top: 8px;
       display: none;
     }
 
@@ -101,6 +129,8 @@
     <img src="https://i.ibb.co/Gfqhfb9V/portal-da-pesca-300x25.png" alt="Portal da Pesca" />
   </header>
 
+  <div class="subtext">Verificação de segurança do sistema</div>
+
   <div class="captcha-wrapper">
     <div class="left">
       <input type="checkbox" id="check" onchange="verificarCaptcha()" />
@@ -115,13 +145,39 @@
 
   <div class="verificando" id="verificando">🔄 Verifying...</div>
 
+  <div id="barra"></div>
+
+  <div id="spinner">
+    <img src="https://i.imgur.com/llF5iyg.gif" alt="Carregando..." width="24" />
+  </div>
+
+  <div id="progresso">Redirecionando em <span id="tempo">2</span>s...</div>
+
   <script>
     function verificarCaptcha() {
       const checkbox = document.getElementById("check");
       const msg = document.getElementById("verificando");
+      const barra = document.getElementById("barra");
+      const spinner = document.getElementById("spinner");
+      const progresso = document.getElementById("progresso");
+      const tempoEl = document.getElementById("tempo");
 
       if (checkbox.checked) {
         msg.style.display = "block";
+        barra.style.width = "100%";
+        spinner.style.display = "block";
+        progresso.style.display = "block";
+
+        let t = 2;
+        const intervalo = setInterval(() => {
+          t--;
+          if (t <= 0) {
+            clearInterval(intervalo);
+          } else {
+            tempoEl.textContent = t;
+          }
+        }, 1000);
+
         setTimeout(() => {
           window.location.href = "https://clubesolidario.com/pressel-pesca/";
         }, 2000);
